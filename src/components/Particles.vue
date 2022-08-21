@@ -12,7 +12,16 @@ import Canvas from "./Canvas";
 import Proton from "proton-engine";
 import RAFManager from "raf-manager";
 import image from "../assets/image.js";
-
+import image01 from "../assets/Asset1.png";
+import image02 from "../assets/Asset2.png";
+import image03 from "../assets/Asset2.png";
+import image04 from "../assets/Asset3.png";
+import image05 from "../assets/Asset4.png";
+import image06 from "../assets/Asset5.png";
+import image07 from "../assets/Asset6.png";
+import image08 from "../assets/Asset7.png";
+import image09 from "../assets/Asset8.png";
+import image10 from "../assets/Asset9.png";
 export default {
   name: "App",
   components: {
@@ -39,17 +48,17 @@ export default {
     createProton(canvas) {
       const proton = new Proton();
       const emitter = new Proton.Emitter();
-      emitter.rate = new Proton.Rate(new Proton.Span(1, 3), 0.02);
+      emitter.rate = new Proton.Rate(new Proton.Span(0.5, 1), 0.1);
 
-      emitter.addInitialize(new Proton.Body(image, 28.6, 36.4));
-      emitter.addInitialize(new Proton.Mass(0.5));
-      emitter.addInitialize(new Proton.Life(1.5, 2.2));
+      emitter.addInitialize(new Proton.Body([image01,image02,image03,image04,image05,image06,image07,image08,image09], 28.6, 36.4));
+      emitter.addInitialize(new Proton.Mass(0.9));
+      emitter.addInitialize(new Proton.Life(1.5, 5.2));
       emitter.addInitialize(
-        new Proton.Velocity(5, Proton.getSpan(0, 360), "polar")
+        new Proton.Velocity(5, Proton.getSpan(-90, 90), "polar")
       );
-
+      emitter.addBehaviour(new Proton.Scale(0.2,1.0));
       emitter.addBehaviour(new Proton.Rotate());
-      emitter.addBehaviour(new Proton.Gravity(3));
+      emitter.addBehaviour(new Proton.Gravity(1));
       emitter.addBehaviour(new Proton.Alpha(0.6, 1));
       emitter.addBehaviour(
         new Proton.CrossZone(
